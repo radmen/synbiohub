@@ -1,0 +1,64 @@
+
+include './mutable-fields.jade'
+include './citations.jade'
+
+mixin toplevel-details-panel(meta, canEdit) 
+    .panel.panel-default
+            .panel-heading
+                h4.panel-title
+                    a.accordion-toggle(data-toggle='collapse', href='#collapseZero')
+                        | <b>Details</b>
+            #collapseZero.panel-collapse.collapse.in
+                .panel-body
+                    table.table.table-striped.entry-detail-table
+
+                        if meta.labels && meta.labels.length > 0
+                            tr
+                                td Labels
+                                td #{meta.labels.join(', ')}
+
+                        if meta.types && meta.types.length > 0
+                            tr
+                                td Types
+                                td 
+                                    for type in meta.types
+                                        if type.description 
+                                           != type.description.name
+                                           a(href=type.term,title='Learn more about this type') 
+                                               span.fa.fa-info-circle
+                                           a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title='Find all records with this type') 
+                                               span.fa.fa-search
+                                        else 
+                                           != type.uri 
+                                           a(href=type.uri,title='Learn more about this type') 
+                                               span.fa.fa-info-circle
+                                           a(href='/search/type=<'+encodeURIComponent(type.uri)+'>&',title='Find all records with this type') 
+                                               span.fa.fa-search
+                                        br
+
+                        if meta.roles && meta.roles.length > 0
+                            tr
+                                td Roles
+                                td
+                                    for role in meta.roles
+                                        if role.description
+                                            != role.description.name
+                                            a(href=role.term,title='Learn more about this role') 
+                                                span.fa.fa-info-circle
+                                            a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
+                                                span.fa.fa-search
+                                        else 
+                                            != role.term 
+                                            a(href=role.uri,title='Learn more about this role') 
+                                                span.fa.fa-info-circle
+                                            a(href='/search/role=<'+encodeURIComponent(role.uri)+'>&',title='Find all records with this role') 
+                                                span.fa.fa-search
+                                        br
+
+                        block topLevelPropertyTable
+
+                    block topLevelBelowPropertyTable
+                    +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
+                    +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
+                    +mutable-source(meta.sourceSource, meta.source, canEdit)
+                    +citations(citationsSource, submissionCitations, canEdit) 

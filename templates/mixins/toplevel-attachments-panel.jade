@@ -1,0 +1,14 @@
+
+include './attachments.jade'
+
+mixin toplevel-attachments-panel(meta, canEdit) 
+    .panel.panel-default
+        .panel-heading
+            h4.panel-title
+                a.accordion-toggle(data-toggle='collapse', href='#collapseThree')
+                    | <b>Attachments</b>
+        #collapseThree.panel-collapse.collapse
+            .panel-body
+                div.row
+                    div.col-md-12
+                        +attachments(meta.url, meta.attachments, canEdit)

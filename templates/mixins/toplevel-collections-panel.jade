@@ -1,0 +1,20 @@
+
+mixin toplevel-collections-panel(collections, canEdit) 
+    if collections.length > 0
+        .panel.panel-default
+            .panel-heading
+                h4.panel-title
+                    a.accordion-toggle(data-toggle='collapse', href='#collapseOne')
+                        | <b>Member of these Collections</b>
+            #collapseOne.panel-collapse.collapse
+                .panel-body
+                    div.row
+                        div.col-md-12
+                            table.table.table-striped.entry-detail-table
+                                tr
+                                    td
+                                        for collection in collections
+                                            a(href=collection.url,title=collection.name) #{collection.name} &nbsp;
+                                                a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&',title='Find all records in this collection')
+                                                    span.fa.fa-search
+                                            br

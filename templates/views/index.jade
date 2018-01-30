@@ -41,12 +41,6 @@ block head
             text-align: center;
         }
 
-        .navbar {
-        }
-
-        .sbol-breadcrumbs {
-        }
-
         .sbol-logo-dark-single-line {
             display: none;
         }
@@ -65,14 +59,6 @@ block breadcrumbs
 block content
 
     div.container.container-fluid
-        div.row
-            div.col-md-2
-            div.col-md-8(style='text-align: center;')
-                if config.instanceLogo
-                    img.about-logo(src=config.instanceLogo,width='100%')
-                else
-                    h1 #{config.instanceName}
-
         div.row
             div.col-md-2
             div.col-md-8.sbh-frontpage-blurb
