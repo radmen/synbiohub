@@ -1,0 +1,115 @@
+
+extends ../layouts/default.jade
+
+block breadcrumbs
+    ul
+        li
+            span.fa.fa-cloud-upload
+            |  Submit
+
+
+block content
+    div.submission-container(align='center')
+        div.submission-header
+            span(style='font-size: 3.3em').fa.fa-cloud-upload
+            p(style='font-size: 1.7em; font-weight: bolder')
+                | Tell us about your submission
+            p(style='text-align:center;')
+                | SynBioHub organizes your uploads into #[b collections].  Parts can be uploaded into a new or existing collection.
+            p
+                | #[span(style='font-weight: bolder;') Bold fields] are required
+
+            ul.nav.nav-tabs(role="tablist")
+                li.active(role="presentation")
+                    a(data-toggle="tab", href="#new", role="tab", aria-controls="new") Submit to New Collection
+                li(role="presentation")
+                    a(data-toggle="tab", href="#existing", role="tab", aria-controls="existing") Submit to Existing Collection
+
+            div.tab-content
+                        input(type="hidden", name="submitType", value="new")
+                        div.row
+                            div.col-md-12
+                                div.form-group-100.required
+                                    label(for="name") Collection Name
+                                        a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Name",title='SynBioHub organizes your uploads into collections.  You can upload as many parts as you want into one collection, and then conveniently download them all together or share the collection as a whole with other people.  If you have already made a collection, select the Submit to Existing Private Collection button above.  If you have not, fill out the form below to create a new one.')
+                                            span.fa.fa-info-circle
+                                    input.form-control(name='name',id="name",placeholder='A short title for your collection.  You can use spaces and symbols here.')
+                        div.row
+                            div.col-md-12
+                                div.form-group-100.required
+                                    label(for="description") Collection Description
+                                    textarea.form-control(name='description', id="description"
+                                            placeholder='The more you say, the easier it will be to find your design.')
+
+                        div.row
+                            div.col-md-6
+                                div.form-group-100.required
+                                    label(for="id") Collection Id
+                                        a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Id",title='An id is a string of characters that MUST be composed of only alphanumeric or underscore characters and MUST NOT begin with a digit.')
+                                            span.fa.fa-info-circle
+                                    input.form-control(type='text', id="id", name='id',placeholder='Just letters and numbers, no spaces')
+                            div.col-md-6
+                                div.form-group-100.required
+                                    label(for='version') Collection Version
+                                        a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Version",title='A version is a string of characters that MUST be composed of only alphanumeric characters, underscores, hyphens, or periods and MUST begin with a digit.')
+                                            span.fa.fa-info-circle
+                                    input.form-control(type='text', id='version', name='version',placeholder='Version')
+                        div.row
+                            div.col-md-12
+                                div.form-group-100
+                                    label(for="citations") Citations (optional)
+                                    input.form-control(name='citations', id="citations"
+                                                       placeholder='Comma separated Pubmed IDs, we\'ll do the rest!'
+                                                       )
+
+                        //div.row
+                        //    div.col-md-12
+                        //        div.form-group-100
+                        //            label(for="collections") Collection
+                        //            select(name='collections' style="width:675px;" id='collections' multiple data-placeholder='Select Some Collections').chosen-select
+                        //                for collection in collections
+                        //                    option(value=collection.uri) #{collection.name}
+
+                        div.row
+                            div.col-md-12
+                                div.form-group-100
+                                   label SBOL/GenBank/FASTA/ZIP File
+                                   br
+                                   input(type='file',name='file')
+
+                        div.row
+                            div.col-sm-12
+                                div.checkbox(style="margin-left:20px")
+                                    label
+                                        input#overwrite_objects(type="checkbox", name="overwrite_objects", value=false, checked=false)
+                                        |    Overwrite Existing Objects
+                                        a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Overwrite",title='If you are submitting the same thing twice because you have changed things, tick the box below to overwrite previous versions with what you are uploading now.  If this is the first time you have made this submission, you can ignore this.')
+                                           span.fa.fa-info-circle
+                        br
+
+                        div.row
+                            div.col-md-12
+                                button(type='submit').btn.btn-primary.btn-lg Submit
+
+            div.tab-pane#existing(role="tabpanel")
+                    form(method='post',enctype='multipart/form-data')
+                        input(type="hidden", name="submitType", value="existing")
+                        div.row
+                            div.col-sm-12
+                                div.form-group.required
+                                    label(for="rootCollections") Destination Collection
+                                    select.form-control(name='rootCollections' id='rootCollections')
+                                        option(value="") Choose a collection...
+
+
+                        div.row
+                            div.col-sm-12
+                                div.checkbox(style="margin-left:20px")
+                                    label
+                                        input#overwrite_objects(type="checkbox", name="overwrite_objects", value=false, checked=false)
+                                        |    Overwrite Existing Objects
+                                        a(href="http://wiki.synbiohub.org/wiki/Terms/SynBioHub#Overwrite",title='If you are submitting the same thing twice because you have changed things, tick the box below to overwrite previous versions with what you are uploading now.  If this is the first time you have made this submission, you can ignore this.')
+                                                span.fa.fa-info-circle
+                        div.row
+                            div.col-md-12
+                                button(type='submit').btn.btn-primary.btn-lg Submit
