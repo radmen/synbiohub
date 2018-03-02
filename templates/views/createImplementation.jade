@@ -16,17 +16,18 @@ block content
                 | Tell us about your live design!
 
             div.tab-content
+            form(method='post',enctype='multipart/form-data')
                         input(type="hidden", name="submitType", value="new")
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
                                     label(for="plan") Lab Protocol Used
-                                    input.form-control(name='name',id="name",placeholder='The name of the lab protocol used to build the design.')
+                                    input.form-control(name='plan',id="plan",placeholder='The name of the lab protocol used to build the design.')
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
                                     label(for="agent") Researcher
-                                    textarea.form-control(name='description', id="description"
+                                    textarea.form-control(name='agent', id="agent"
                                             placeholder='The name of the researcher who built the design.')
                         div.row
                             div.col-md-12
@@ -38,3 +39,6 @@ block content
                         div.row
                             div.col-md-12
                                 button(type='submit').btn.btn-primary.btn-lg Submit
+                                
+
+        
