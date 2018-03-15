@@ -109,11 +109,10 @@ block content
                         a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&',title='Find all records modified on this date')
                             span.fa.fa-search
 
-                if meta.description && meta.description != ''
-                    h4
-                        != meta.description
-                        a(href='/search/?q='+meta.description,title='Find all records with terms in common with this description')
-                            span.fa.fa-search
+                block tempdescription
+                  h4 Researcher: #{agent}
+
+                  h4 Protocol: #{plan}
 
                 block topLevelBelowTitle
 
@@ -181,6 +180,9 @@ block content
                                 block topLevelPropertyTable
 
                             block topLevelBelowPropertyTable
+                              block tempdescription
+                                h4 Purpose
+                                | #{meta.description}
                             +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
                             +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
                             +mutable-source(meta.sourceSource, meta.source, canEdit)
