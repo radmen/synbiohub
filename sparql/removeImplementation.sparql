@@ -1,0 +1,24 @@
+PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
+PREFIX sbol2: <http://sbols.org/v2#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+
+DELETE{
+?s ?p ?o .
+?sact ?pact ?oact
+}
+WHERE{
+
+{?s ?p ?o .
+?s sbol2:persistentIdentity <$uri> .
+FILTER (!CONTAINS(str(?p), 'wasDerivedFrom')).
+}
+
+UNION {
+
+?s prov:wasGeneratedBy ?sact .
+
+?sact ?pact ?oact
+
+}
+
+}

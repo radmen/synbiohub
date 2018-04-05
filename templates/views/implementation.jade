@@ -120,6 +120,24 @@ block content
 
         div.row
             div.btn-group
+
+            block topLevelButtons
+            if meta.triplestore != 'public'
+                li.btn.btn-success
+                        a(onclick="popup()",title='Share',style="color:white")
+                            span.fa.fa-share
+            if meta.triplestore != 'public' && locals.user && locals.user.isCurator
+                li.btn.btn-success
+                        a(href=meta.url + '/makePublic',title='Make Public',style="color:white")
+                            span.fa.fa-unlock
+            if canEdit && meta.triplestore != 'public'
+                  li.btn.btn-success
+                          a(href=meta.url + '/remove',title='Remove',style="color:white")
+                              span.fa.fa-remove
+            if canEdit
+                li.btn.btn-info
+                        a(href=meta.url + "/addOwner",title='Add Owner',style="color:white")
+                            span.fa.fa-id-card
             br
             br
 
