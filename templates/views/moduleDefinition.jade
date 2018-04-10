@@ -2,7 +2,9 @@
 extends ../layouts/topLevel.jade
 
 block implementation
-    h1 Hello
+    a(href=meta.url + '/createImplementation')
+        span.fa.fa-simplybuilt
+        span.blue-text  Implementation
 
 block topLevelPropertyTable
     if modules.length > 0
