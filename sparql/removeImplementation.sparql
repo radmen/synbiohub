@@ -8,15 +8,14 @@ DELETE{
 }
 WHERE{
 
-{?s ?p ?o .
-?s sbol2:persistentIdentity <$uri> .
-FILTER (!CONTAINS(str(?p), 'wasDerivedFrom')).
+{
+?s ?p ?o .
+?s sbh:topLevel <$uri> .
 }
 
 UNION {
 
 ?s prov:wasGeneratedBy ?sact .
-
 ?sact ?pact ?oact
 
 }
