@@ -15,7 +15,7 @@ WHERE{
 
 UNION {
 
-?s prov:wasGeneratedBy ?sact .
+<$uri> prov:wasGeneratedBy ?sact .
 ?sact ?pact ?oact
 
 }
