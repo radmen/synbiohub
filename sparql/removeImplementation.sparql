@@ -3,14 +3,18 @@ PREFIX sbol2: <http://sbols.org/v2#>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 
 DELETE{
+
 ?s ?p ?o .
 ?sact ?pact ?oact
+
 }
 WHERE{
 
 {
+
 ?s ?p ?o .
 ?s sbh:topLevel <$uri> .
+
 }
 
 UNION {

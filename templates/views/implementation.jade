@@ -1,5 +1,5 @@
 
-extends ../layouts/default.jade
+extends ../layouts/topLevel.jade
 
 include ../mixins/blast-button.jade
 include ../mixins/mutable-fields.jade
@@ -17,14 +17,6 @@ block jsState
             });
         }
 
-block breadcrumbs
-    ul
-        li.inactive
-            a(href='/search')
-                span.fa.fa-search
-                |  IMPLEMENTATION
-        li
-            a(href=meta.url) #{meta.uri}
 
 block content
 
