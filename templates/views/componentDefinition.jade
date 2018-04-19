@@ -11,17 +11,10 @@ block topLevelPreview
         div.row
             div.col-md-12.text-center
             div#design
+            
+            
 
 block topLevelPropertyTable
-
-    if meta.builds.length > 0
-            tr
-            td Built Designs
-            td
-                for impl in meta.builds
-                    a(href=impl)
-                        != impl
-                        br
 
     if meta.sequences.length > 0
         tr
@@ -115,3 +108,4 @@ block topLevelButtons
             a(href=meta.url + '/integrate',title='Integrate data from an integration pipeline',style="color:white")
                 span.fa.fa-plus-circle
                 | Data Integration
+                

@@ -25,15 +25,6 @@ block topLevelPropertyTable
                 for module in modules
                     a(href=module.url) #{module.defName}
                     br
-                    
-    if meta.builds.length > 0
-          tr
-          td Built Designs
-          td
-              for impl in meta.builds
-                  a(href=impl)
-                      != impl
-                      br
     if functionalComponents.length > 0
         tr
             td

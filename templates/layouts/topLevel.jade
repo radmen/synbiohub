@@ -288,6 +288,14 @@ block content
                                 div.row
                                     div.col-md-12
                                         table.table.table-striped.entry-detail-table
+                                            if meta.builds && meta.builds.length > 0
+                                                    tr
+                                                    td Built Designs
+                                                    td
+                                                        for impl in meta.builds
+                                                            a(href=impl)
+                                                                != impl
+                                                                br
                                             for annotation in annotations
                                                 tr
                                                     td #{annotation.name}
@@ -309,6 +317,8 @@ block content
                                                         td #{annotation.value.toString()} &nbsp;
                                                             a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = 'Find all records with this annotation')
                                                                 span.fa.fa-search
+                                                                
+                                                    
 
                 .panel.panel-default
                     .panel-heading
