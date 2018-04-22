@@ -17,6 +17,12 @@ block content
 
             div.tab-content
             form(method='post',enctype='multipart/form-data')
+                        if errors.length > 0
+                            each error in errors
+                                div.alert.alert-danger
+                                    p #{error}
+                                br
+                        
                         input(type="hidden", name="submitType", value="new")
                         div.row
                             div.col-md-12
