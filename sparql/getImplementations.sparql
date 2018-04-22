@@ -2,8 +2,9 @@ PREFIX sbh: <http://wiki.synbiohub.org/wiki/Terms/synbiohub#>
 PREFIX sbol2: <http://sbols.org/v2#>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 
-SELECT * WHERE {
+SELECT ?s WHERE {
 
- <$uri> a sbol2:Implementation .
+ ?s a sbol2:Implementation .
+ ?s prov:wasDerivedFrom <$uri>.
 
 }
