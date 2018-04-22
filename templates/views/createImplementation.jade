@@ -28,31 +28,31 @@ block content
                             div.col-md-12
                                 div.form-group-100.required
                                     label(for="design_name") Design Name
-                                    input.form-control(name='design_name',id="design_name",placeholder='The name of the built design.')
+                                    input.form-control(name='design_name',id="design_name",placeholder='The name of the built design.', value=submission.design_name)
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
                                     label(for="plan") Lab Protocol Used
-                                    input.form-control(name='plan',id="plan",placeholder='The name of the lab protocol used to build the design.')
+                                    input.form-control(name='plan',id="plan",placeholder='The name of the lab protocol used to build the design.', value=submission.plan)
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
                                     label(for="agent") Researcher
-                                    textarea.form-control(name='agent', id="agent"
-                                            placeholder='The name of the researcher who built the design.')
+                                    input.form-control(name='agent', id="agent"
+                                            placeholder='The name of the researcher who built the design.', value=submission.agent)
 
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
                                     label(for="description") Purpose
-                                    textarea.form-control(name='description', id="description"
-                                            placeholder='Brief description about the purpose of this live design.')
+                                    input.form-control(name='description',id="description"
+                                            placeholder='Brief description about the purpose of this live design.',value=submission.description)
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
                                     label(for="location") Physical Location
-                                    textarea.form-control(name='location', id="location"
-                                            placeholder='Physical location of the live design e.g. Fridge A, Tray 2')
+                                    input.form-control(name='location', id="location"
+                                            placeholder='Physical location of the live design e.g. Fridge A, Tray 2', value=submission.location)
 
                         div.row
                             div.col-md-12
