@@ -101,12 +101,7 @@ block content
                         a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&',title='Find all records modified on this date')
                             span.fa.fa-search
 
-                block tempdescription
-                  h4 Researcher: #{agent}
 
-                  h4 Protocol: #{plan}
-
-                  h4 Physical Location: #{location}
 
                 block topLevelBelowTitle
 
@@ -140,9 +135,16 @@ block content
                               block tempdescription
                                 h4 Purpose
                                 | #{meta.description}
-                            +mutable-description(meta.mutableDescriptionSource, meta.mutableDescription, canEdit)
-                            +mutable-notes(meta.mutableNotesSource, meta.mutableNotes, canEdit)
-                            +mutable-source(meta.sourceSource, meta.source, canEdit)
+
+                                h4 Researcher:
+                                | #{agent}
+
+                                h4 Protocol:
+                                | #{plan}
+
+                                h4 Physical Location:
+                                | #{location}
+
 
                 if meta.iGemMainPage
                     .panel.panel-default
@@ -171,39 +173,6 @@ block content
                         #collapseThree.panel-collapse.collapse
                             .panel-body
                                 | !{meta.iGemExperience}
-
-                if annotations && annotations.length > 0
-                    .panel.panel-default
-                        .panel-heading
-                            h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseFive')
-                                    | <b>Other Properties</b>
-                        #collapseFive.panel-collapse.collapse
-                            .panel-body
-                                div.row
-                                    div.col-md-12
-                                        table.table.table-striped.entry-detail-table
-                                            for annotation in annotations
-                                                tr
-                                                    td #{annotation.name}
-                                                        a(href=annotation.nameDef,title='Learn more about this annotation type')
-                                                           span.fa.fa-info-circle
-                                                    if (annotation.type === 'uri')
-                                                        td #{annotation.value}
-                                                            a(href=annotation.url,title='Learn more about this annotation value')
-                                                                span.fa.fa-info-circle &nbsp;
-                                                            a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=<' + encodeURIComponent(annotation.uri) + '>&', title = 'Find all records with this annotation')
-                                                                span.fa.fa-search
-                                                            if(canEdit && annotation.removeOwner)
-                                                                form.form-inline(style="display: inline" method='POST', action=annotation.removeOwner)
-                                                                    input(type='hidden' name='userUri' value=config.databasePrefix + annotation.value)
-                                                                    button.fakelink(type='submit')
-                                                                        | &nbsp;
-                                                                        span.fa.fa-trash
-                                                    else
-                                                        td #{annotation.value.toString()} &nbsp;
-                                                            a(href = '/search/<' + encodeURIComponent(annotation.nameDef) + '>=' + encodeURIComponent('\''+annotation.value.replace('\'','\\\'')+'\'') + '&', title = 'Find all records with this annotation')
-                                                                span.fa.fa-search
 
                 .panel.panel-default
                     .panel-heading

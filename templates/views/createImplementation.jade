@@ -5,7 +5,7 @@ block breadcrumbs
     ul
         li
             span.fa.fa-cloud-upload
-            |  Live Design Submission
+            |  Built Design Submission
 
 
 block content
@@ -22,7 +22,7 @@ block content
                                 div.alert.alert-danger
                                     p #{error}
                                 br
-                        
+
                         input(type="hidden", name="submitType", value="new")
                         div.row
                             div.col-md-12
@@ -54,12 +54,6 @@ block content
                                     input.form-control(name='location', id="location"
                                             placeholder='Physical location of the live design e.g. Fridge A, Tray 2', value=submission.location)
 
-                        div.row
-                            div.col-md-12
-                                div.form-group-100
-                                    label(for="citations") Citations (optional)
-                                    input.form-control(name='citations', id="citations"
-                                                       placeholder='Comma separated Pubmed IDs, we\'ll do the rest!')
 
                         div.row
                             div.col-md-12
