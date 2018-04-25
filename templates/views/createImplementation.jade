@@ -19,6 +19,7 @@ block content
             div.tab-content
             form(method='post',enctype='multipart/form-data')
                         if errors.length > 0
+                            
                             each error in errors
                                 div.alert.alert-danger
                                     p #{error}
@@ -35,13 +36,15 @@ block content
                                 div.form-group-100.required
                                     label(for="plan") Lab Protocol Used
                                     input.form-control(name='plan',id="plan",placeholder='The name of the lab protocol used to build the design.', value=submission.plan)
+
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
                                     label(for="agent") Researcher
-                                    input.form-control(name='agent', id="agent"
-                                            placeholder='The name of the researcher who built the design.', value=submission.agent)
-
+                                    select.form-control(name='agent', id="agent")
+                                            option(value='', selected='selected') The name of the researcher who built the design.
+                                            for agent in agents
+                                              option(value = agent) #{agent}
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
