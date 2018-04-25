@@ -1,5 +1,6 @@
 
 extends ../layouts/default.jade
+include ../mixins/attachments.jade
 
 block breadcrumbs
     ul
@@ -53,7 +54,6 @@ block content
                                     label(for="location") Physical Location
                                     input.form-control(name='location', id="location"
                                             placeholder='Physical location of the live design e.g. Fridge A, Tray 2', value=submission.location)
-
 
                         div.row
                             div.col-md-12
