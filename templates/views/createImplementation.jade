@@ -55,6 +55,27 @@ block content
                                     input.form-control(name='location', id="location"
                                             placeholder='Physical location of the live design e.g. Fridge A, Tray 2', value=submission.location)
 
+                        .panel.panel-default
+                            .panel-heading
+                                h4.panel-title
+                                    a.accordion-toggle(data-toggle='collapse', href='#collapseSix')
+                                        | <b>Please upload a file describing the lab protocol</b>
+                            #collapseSix.panel-collapse.collapse
+                                .panel-body
+                                    div.row
+                                        div.col-md-12
+                                            
+                                            if canEdit
+                                                div.row
+                                                        div.col-xs-6
+                                                            div.input-group
+                                                                label.input-group-btn
+                                                                    span.btn.btn-primary
+                                                                        | Select file(s)&hellip;
+                                                                        input(type="file",name="file",style="display: none;",multiple)
+                                                                input(type="text",class="form-control",readonly)
+                                                        div.col-xs-3
+
                         div.row
                             div.col-md-12
                                 button(type='submit').btn.btn-primary.btn-lg Submit
