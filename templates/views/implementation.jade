@@ -109,6 +109,12 @@ block content
             div.btn-group
 
             block topLevelButtons
+            li.dropdown.btn.btn-primary
+                span.fa.fa-download
+                    span.caret
+                ul.dropdown-menu.dropdown-toggle
+                    li
+                        a(href=meta.url + '/' + meta.id + '.xml') Download SBOL File
             if meta.triplestore != 'public'
                 li.btn.btn-success
                         a(onclick="popup()",title='Share',style="color:white")
