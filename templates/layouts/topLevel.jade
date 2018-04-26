@@ -279,25 +279,35 @@ block content
                                                             a(href='/search/collection=<'+encodeURIComponent(collection.uri)+'>&',title='Find all records in this collection')
                                                                 span.fa.fa-search
                                                         br
+
+                if meta.builds && meta.builds.length > 0
+                  .panel.panel-default
+                      .panel-heading
+                          h4.panel-title
+                              a.accordion-toggle(data-toggle='collapse', href='#collapseFive')
+                                  | <b>Built Designs</b>
+                      #collapseFive.panel-collapse.collapse
+                          .panel-body
+                              div.row
+                                  div.col-md-12
+                                      table.table.table-striped.entry-detail-table
+                                                tr
+                                                td
+                                                    for impl in meta.builds
+                                                        a(href=impl)
+                                                            != impl
+                                                            br
                 if annotations && annotations.length > 0
                     .panel.panel-default
                         .panel-heading
                             h4.panel-title
-                                a.accordion-toggle(data-toggle='collapse', href='#collapseFive')
+                                a.accordion-toggle(data-toggle='collapse', href='#collapseSix')
                                     | <b>Other Properties</b>
-                        #collapseFive.panel-collapse.collapse
+                        #collapseSix.panel-collapse.collapse
                             .panel-body
                                 div.row
                                     div.col-md-12
                                         table.table.table-striped.entry-detail-table
-                                            if meta.builds && meta.builds.length > 0
-                                                    tr
-                                                    td Built Designs
-                                                    td
-                                                        for impl in meta.builds
-                                                            a(href=impl)
-                                                                != impl
-                                                                br
                                             for annotation in annotations
                                                 tr
                                                     td #{annotation.name}
@@ -325,9 +335,9 @@ block content
                 .panel.panel-default
                     .panel-heading
                         h4.panel-title
-                            a.accordion-toggle(data-toggle='collapse', href='#collapseSix')
+                            a.accordion-toggle(data-toggle='collapse', href='#collapseSeven')
                                 | <b>Attachments</b>
-                    #collapseSix.panel-collapse.collapse
+                    #collapseSeven.panel-collapse.collapse
                         .panel-body
                             div.row
                                 div.col-md-12
