@@ -1,0 +1,37 @@
+
+extends ../layouts/default.jade
+
+block breadcrumbs
+    ul
+        li
+            span.fa.fa-cloud-upload
+            |  Create an organisation
+
+
+block content
+    div.submission-container(align='center')
+        div.submission-header
+            span(style='font-size: 3.3em').fa.fa-cloud-upload
+            p(style='font-size: 1.7em; font-weight: bolder')
+                | Create an organisation
+
+            div.tab-content
+            form(method='post',enctype='multipart/form-data')
+                        if errors.length > 0
+                            
+                            each error in errors
+                                div.alert.alert-danger
+                                    p #{error}
+                                br
+
+                        input(type="hidden", name="submitType", value="new")
+                        div.row
+                            div.col-md-12
+                                div.form-group-100.required
+                                    label(for="design_name") Organisation Name
+                                    input.form-control(name='design_name',id="design_name",placeholder='The name of the organisation.')
+
+
+                        div.row
+                            div.col-md-12
+                                button(type='submit').btn.btn-primary.btn-lg Submit
