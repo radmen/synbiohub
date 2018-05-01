@@ -19,7 +19,7 @@ block content
             div.tab-content
             form(method='post',enctype='multipart/form-data')
                         if errors.length > 0
-                            
+
                             each error in errors
                                 div.alert.alert-danger
                                     p #{error}
@@ -44,7 +44,7 @@ block content
                                     select.form-control(name='agent', id="agent")
                                             option(value='', selected='selected') The name of the researcher who built the design.
                                             for agent in agents
-                                              option(value = agent) #{agent}
+                                              option(value = agent.name) #{agent.name}
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
@@ -67,7 +67,7 @@ block content
                                 .panel-body
                                     div.row
                                         div.col-md-12
-                                            
+
                                             if canEdit
                                                 div.row
                                                         div.col-xs-6
