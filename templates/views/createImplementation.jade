@@ -38,8 +38,9 @@ block content
                                     label(for="agent") Researcher
                                     select.form-control(name='agent', id="agent")
                                             option(value='', selected='selected') The name of the researcher who built the design.
-                                            for agent in agents
-                                              option(value = agent.name) #{agent.name}
+                                            - for(var i=0;i< agent_names.length;i++) {
+                                              option(value = [agent_uris[i],agent_names[i]]) #{agent_names[i]}
+                                            - }
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
@@ -58,10 +59,10 @@ block content
                                     .panel-body
                                     label(for="agent")
                                     div.col-sm-2
-                                      input(type="radio", data-toggle='collapse', data-target='.collapseForm', id="ast1", name="agent_submission_type", value="0", checked=true)
+                                      input(type="radio", data-toggle='collapse', data-target='.collapseForm', id="ast1", name="plan_submission_type", value="0", checked=true)
                                       | Create
                                     div.col-sm-10
-                                      input(type="radio", data-toggle='collapse', data-target='.collapseForm', id="ast2", name="agent_submission_type", value="1") 
+                                      input(type="radio", data-toggle='collapse', data-target='.collapseForm', id="ast2", name="plan_submission_type", value="1") 
                                       | Don't create                 
 
                         div.row
@@ -71,7 +72,7 @@ block content
                                     .collapseForm.panel-collapse.collapse.in
                                         .panel-body
                                         label(for="agent") LabProtocolDropdown
-                                        select.form-control(name='plan', id="plan")
+                                        select.form-control(name='plan1', id="plan1")
                                                 option(value='', selected='selected') The name of the researcher who built the design.
                                                 for plan in plans
                                                   option(value = plan) #{plan}
@@ -85,7 +86,7 @@ block content
                                     div.col-md-12
                                         div.form-group-100.required
                                             label(for="plan") Lab Protocol Used
-                                            input.form-control(name='plan',id="plan",placeholder='The name of the lab protocol used to build the design.', value=submission.plan)
+                                            input.form-control(name='plan2',id="plan2",placeholder='The name of the lab protocol used to build the design.', value=submission.plan2)
 
 
                                     .panel.panel-default
