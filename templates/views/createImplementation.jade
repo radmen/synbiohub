@@ -59,16 +59,16 @@ block content
                                     .panel-body
                                     label(for="agent")
                                     div.col-sm-2
-                                      input(type="radio", data-toggle='collapse', data-target='.collapseForm', id="ast1", name="plan_submission_type", value="0", checked=true)
+                                      //- input(type="checkbox" name="checkbox[]")
+                                      input(type="checkbox", data-toggle='collapse', data-target='.collapseForm', id="ast1", name="plan_submission_type[]")
                                       | Create
-                                    div.col-sm-10
-                                      input(type="radio", data-toggle='collapse', data-target='.collapseForm', id="ast2", name="plan_submission_type", value="1") 
-                                      | Don't create                 
+                                    //- div.col-sm-10
+                                    //-   input(type="radio", data-toggle='collapse', data-target='.collapseForm', id="ast2", name="plan_submission_type", value="1") 
+                                    //-   | Create                 
 
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
-                                a.accordion-toggle()
                                     .collapseForm.panel-collapse.collapse.in
                                         .panel-body
                                         label(for="agent") LabProtocolDropdown
@@ -79,7 +79,7 @@ block content
 
 
                         div.row
-                            a.accordion-toggle()
+                            
                                 .collapseForm.panel-collapse.collapse
                                     .panel-body
                                     div.row
