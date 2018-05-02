@@ -31,11 +31,6 @@ block content
                                 div.form-group-100.required
                                     label(for="design_name") Design Name
                                     input.form-control(name='design_name',id="design_name",placeholder='The name of the built design.', value=submission.design_name)
-                        div.row
-                            div.col-md-12
-                                div.form-group-100.required
-                                    label(for="plan") Lab Protocol Used
-                                    input.form-control(name='plan',id="plan",placeholder='The name of the lab protocol used to build the design.', value=submission.plan)
 
                         div.row
                             div.col-md-12
@@ -57,6 +52,13 @@ block content
                                     label(for="location") Physical Location
                                     input.form-control(name='location', id="location"
                                             placeholder='Physical location of the live design e.g. Fridge A, Tray 2', value=submission.location)
+
+                        div.row
+                            div.col-md-12
+                                div.form-group-100.required
+                                    label(for="plan") Lab Protocol Used
+                                    input.form-control(name='plan',id="plan",placeholder='The name of the lab protocol used to build the design.', value=submission.plan)
+
 
                         .panel.panel-default
                             .panel-heading
