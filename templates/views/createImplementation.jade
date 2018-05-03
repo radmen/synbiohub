@@ -56,11 +56,11 @@ block content
 
                         div.row
                             div.col-md-12
-                                    .panel-body
-                                    label(for="agent")
-                                    div.col-sm-2
-                                      input(type="checkbox", data-toggle='collapse', data-target='.collapseForm', id="ast1", name="plan_submission_type[]")
-                                      | Create
+                              div.form-group-100.required
+                                    div
+                                      label(for="agent") Lab Protocol Used
+                                      input(type="checkbox", style='margin-left:50px', data-toggle='collapse', data-target='.collapseForm', id="ast1", name="plan_submission_type[]")
+                                      | Create a new Lab Protocol
               
 
                         div.row
@@ -68,9 +68,8 @@ block content
                                 div.form-group-100.required
                                     .collapseForm.panel-collapse.collapse.in
                                         .panel-body
-                                        label(for="agent") LabProtocolDropdown
                                         select.form-control(name='plan1', id="plan1")
-                                                option(value='', selected='selected') The name of the researcher who built the design.
+                                                option(value='', selected='selected') The name of the Lab Protocol used to build the design.
                                                 - for(var i=0;i< plan_names.length;i++) {
                                                   option(value = [plan_uris[i],plan_names[i]]) #{plan_names[i]}
                                                 - }
