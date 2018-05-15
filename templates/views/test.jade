@@ -1,28 +1,177 @@
 
 extends ../layouts/topLevel.jade
 
-block topLevelButtons
-    a.btn.btn-primary(href=sbolUrl)
-        span.fa.fa-download
-        | 
-        span Download SBOL File
-    br
-    br
-    if meta.triplestore != 'public'
-        a.btn.btn-success(onclick="popup()")
-            span.fa.fa-share
-            |  Share
-        br
-        br
-    if meta.triplestore != 'public' && locals.user && locals.user.isCurator
-        a.btn.btn-success(href=makePublic)
-            span.fa.fa-unlock
-                |  Make Public
-        br
-        br
-    if meta.triplestore != 'public'
-        a.btn.btn-success(href=meta.url + '/remove')
-            span.fa.fa-remove
-                |  Remove
-        br
-        br
+include ../mixins/blast-button.jade
+include ../mixins/mutable-fields.jade
+include ../mixins/attachments.jade
+include ../mixins/citations.jade
+
+block jsState
+    script meta =
+        != JSON.stringify(meta)
+
+    script.
+        function popup() {
+            popupS.modal({
+                content: '<div class="form-group"><label for="share">Copy the following link to share</label><input id="share" type="text" class="form-control" style="width:30em;" readonly value="#{share}"/></div>',
+            });
+        }
+
+
+block content
+
+    div.clearfix
+
+    div.submission-detail.container-fluid
+
+        div.row.entry-heading
+            div.col-sm-6.entry-title
+
+
+                block implementation
+
+
+                h1 #{meta.name?meta.name:meta.id}
+                    if meta.sbhBookmark && meta.sbhBookmark.description == 'true'
+                        a(href='http://wiki.synbiohub.org/Terms/synbiohub#bookmark',title='Bookmarked Parts')
+                            span.fa.fa-bookmark
+                    if meta.sbhStar && meta.sbhStar.description == 'true'
+                        a(href='http://wiki.synbiohub.org/Terms/synbiohub#star',title='Starred Parts')
+                            span.fa.fa-star
+
+                if locals.remote
+                    h4 #{'Mirrored from '}
+                        a(href=locals.remote.url,title='Edit in ' + locals.remote.name) #{locals.remote.name}
+
+                if meta.id && meta.id != ''
+                    h4 #{meta.id}
+                        a(href='/search/displayId=\''+meta.id+'\'&',title='Find all records with the same identifier')
+                            span.fa.fa-search
+                        if meta.version && meta.version != ''
+                            != 'Version '+meta.version
+                            a(href='/search/persistentIdentity=<'+encodeURIComponent(meta.pid)+'>&',title='Find all versions')
+                                span.fa.fa-search
+                        if rdfType
+                            != ' (' + rdfType.name + ') '
+                            a(href=rdfType.url,title='Learn more about this RDF type')
+                                span.fa.fa-info-circle
+                else
+                        if rdfType
+                            h4 #{rdfType.name}
+                                a(href=rdfType.url,title='Learn more about this RDF type')
+                                    span.fa.fa-info-circle
+
+                if meta.igemDiscontinued && meta.igemDiscontinued.description == 'true'
+                    h4(style=" color: #FF0000") This part has been discontinued.
+                if meta.isReplacedBy && meta.isReplacedBy.uri != ''
+                    h4(style=" color: #FF0000") Please consider using
+                        a(href=meta.isReplacedBy.uri) #{meta.isReplacedBy.id}
+                        | as a replacement.
+
+            if (collectionIcon)
+                div.col-sm-6.sbh-collection-icon
+                    img(src=collectionIcon)
+
+        div.row
+            div.col-md-11
+
+                if meta.creator.description && meta.creator.description != ''
+                    h5 Created by:
+                        != meta.creator.description
+                        a(href='/search/dc:creator=\''+meta.creator.description+'\'&',title='Find all records created by this person')
+                            span.fa.fa-search
+
+                if meta.created.description && meta.created.description != ''
+                    h5 Date created:
+                        != meta.created.description
+                        a(href='/search/createdBefore='+meta.created.description.split(' ')[0]+'&createdAfter='+meta.created.description.split(' ')[0]+'&',title='Find all records created on this date')
+                            span.fa.fa-search
+
+                if meta.modified.description && meta.modified.description != ''
+                    h5 Date modified:
+                        != meta.modified.description
+                        a(href='/search/modifiedBefore='+meta.modified.description.split(' ')[0]+'&modifiedAfter='+meta.modified.description.split(' ')[0]+'&',title='Find all records modified on this date')
+                            span.fa.fa-search
+
+
+
+                block topLevelBelowTitle
+
+        div.row
+            div.btn-group
+
+            block topLevelButtons
+            li.dropdown.btn.btn-primary
+                span.fa.fa-download
+                    span.caret
+                ul.dropdown-menu.dropdown-toggle
+                    li
+                        a(href=meta.url + '/' + meta.id + '.xml') Download SBOL File
+            if meta.triplestore != 'public'
+                li.btn.btn-success
+                        a(onclick="popup()",title='Share',style="color:white")
+                            span.fa.fa-share
+            if canEdit && meta.triplestore != 'public'
+                  li.btn.btn-success
+                          a(href=meta.url + '/remove',title='Remove',style="color:white")
+                              span.fa.fa-remove
+            br
+            br
+
+        block topLevelPreview
+
+        .container
+            #accordion.panel-group
+                .panel.panel-default
+                    .panel-heading
+                        h4.panel-title
+                            a.accordion-toggle(data-toggle='collapse', href='#collapseZero')
+                                | <b>Details</b>
+                    #collapseZero.panel-collapse.collapse.in
+                        .panel-body
+                            block topLevelBelowPropertyTable
+                              block tempdescription
+                                a(style='font-size:20px', href=meta.wasDerivedFrom.toString().startsWith(config.databasePrefix)?'/'+meta.wasDerivedFrom.toString().replace(config.databasePrefix,''):meta.wasDerivedFrom.toString()) Original Design
+                                br
+                                h4 Purpose
+                                | #{meta.description}
+                                br
+                                h4 Researcher:
+                                | #{agent}
+                                br
+                                h4 Protocol:
+                                | #{plan}
+                                br
+                                h4 Physical Location:
+                                | #{location}
+
+                .panel.panel-default
+                    .panel-heading
+                        h4.panel-title
+                            a.accordion-toggle(data-toggle='collapse', href='#collapseSix')
+                                | <b>Lab Protocol Details</b>
+                    #collapseSix.panel-collapse.collapse
+                        .panel-body
+                            div.row
+                                div.col-md-12
+                                  if typeof(meta.attachments) !== 'undefined' && (canEdit || meta.attachments.length > 0)
+                                      table.attachments-table.table.table-striped
+                                          thead
+                                              th Type
+                                              th Name
+                                              th Size
+                                              th
+                                          tbody
+                                          for attachment in meta.attachments
+                                              tr
+                                                  td #{attachment.type}
+                                                  td
+                                                      a(href=attachment.url) #{attachment.name}
+                                                  td
+                                                      if attachment.sizeString
+                                                          | #{attachment.sizeString}
+                                                  td
+                                                      a(href=attachment.url + '/download')
+                                                          button.btn.btn-primary
+                                                              span.fa.fa-download
+                                                              |  Download

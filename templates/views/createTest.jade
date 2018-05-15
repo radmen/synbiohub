@@ -52,8 +52,8 @@ block content
                         div.row
                             div.col-md-12
                                 div.form-group-100.required
-                                    label(for="plan") Experiment Metadata
-                                    input.form-control(name='plan2',id="plan2",placeholder='Metadata for the experiment performed', value=submission.metadata)
+                                    label(for="metadata") Experiment Metadata
+                                    input.form-control(name='metadata',id="metadata",placeholder='Metadata for the experiment performed', value=submission.metadata)
 
 
                             .panel.panel-default
@@ -73,7 +73,7 @@ block content
                                                                     label.input-group-btn
                                                                         span.btn.btn-primary
                                                                             | Select file(s)&hellip;
-                                                                            input(type="file",name="file",style="display: none;",multiple)
+                                                                            input(type="file",name="metadata_file",style="display: none;",multiple)
                                                                     input(type="text",class="form-control",readonly)
                                                             div.col-xs-3
               
