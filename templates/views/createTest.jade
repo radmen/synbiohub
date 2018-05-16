@@ -48,7 +48,14 @@ block content
                                     input.form-control(name='description',id="description"
                                             placeholder='Brief description about the purpose of this live design.',value=submission.description)
                       
-                      
+                        div.row
+                            div.col-md-12
+                                div.form-group-100.required
+                                    label(for="dataurl") Experimental Data URL
+                                    input.form-control(name='dataurl',id="dataurl",placeholder='URL that stores the experimental data', value=submission.dataurl)
+  
+
+
                         div.row
                             div.col-md-12
                                 div.form-group-100.required

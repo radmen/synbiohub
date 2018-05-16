@@ -131,8 +131,9 @@ block content
                         .panel-body
                             block topLevelBelowPropertyTable
                               block tempdescription
-                                a(style='font-size:20px', href=meta.wasDerivedFrom.toString().startsWith(config.databasePrefix)?'/'+meta.wasDerivedFrom.toString().replace(config.databasePrefix,''):meta.wasDerivedFrom.toString()) Original Design
+                                a(style='font-size:20px', href=meta.wasDerivedFrom.toString().startsWith(config.databasePrefix)?'/'+meta.wasDerivedFrom.toString().replace(config.databasePrefix,''):meta.wasDerivedFrom.toString()) Original Built Design
                                 br
+                                a(style='font-size:20px', href=meta.dataurl) Experimental Data URL
                                 h4 Purpose
                                 | #{meta.description}
                                 br
@@ -152,17 +153,15 @@ block content
                         .panel-body
                             div.row
                                 div.col-md-12
-                                  if typeof(meta.attachments) !== 'undefined' && (canEdit || meta.attachments.length > 0)
+                                  if typeof(meta.planattachments) !== 'undefined' && (canEdit || meta.planattachments.length > 0)
                                       table.attachments-table.table.table-striped
                                           thead
-                                              th Type
                                               th Name
                                               th Size
                                               th
                                           tbody
-                                          for attachment in meta.attachments
+                                          for attachment in meta.planattachments
                                               tr
-                                                  td #{attachment.type}
                                                   td
                                                       a(href=attachment.url) #{attachment.name}
                                                   td
@@ -173,3 +172,34 @@ block content
                                                           button.btn.btn-primary
                                                               span.fa.fa-download
                                                               |  Download
+                                                          
+                                                              
+                .panel.panel-default
+                    .panel-heading
+                        h4.panel-title
+                            a.accordion-toggle(data-toggle='collapse', href='#collapseSeven')
+                                | <b>Metadata</b>
+                    #collapseSeven.panel-collapse.collapse
+                        .panel-body
+                            div.row
+                                div.col-md-12
+                                  if typeof(meta.metadataattachments) !== 'undefined' && (canEdit || meta.metadataattachments.length > 0)
+                                      table.attachments-table.table.table-striped
+                                          thead
+                                              th Name
+                                              th Size
+                                              th
+                                          tbody
+                                          for attachment in meta.metadataattachments
+                                              if attachment.size != 0
+                                                tr
+                                                    td
+                                                        a(href=attachment.url) #{attachment.name}
+                                                    td
+                                                        if attachment.sizeString
+                                                            | #{attachment.sizeString}
+                                                    td
+                                                        a(href=attachment.url + '/download')
+                                                            button.btn.btn-primary
+                                                                span.fa.fa-download
+                                                                |  Download
