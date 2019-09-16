@@ -699,3 +699,18 @@ $(document).on('click', '.remove-attachment', function() {
      .done(() => $row.remove())
      .error(() => alert("Could not remove attachment!"));
 })
+
+$(document).on('click', '.copyShare', function() {
+    let $row = $(this).closest('tr');
+    let shareLink = $row.find('#link').first().text();
+
+    let textArea = document.createElement("textarea");
+    textArea.value = shareLink;
+    document.body.appendChild(textArea);
+
+    textArea.select()
+    textArea.setSelectionRange(0, 9999999); // for mobile? 
+    document.execCommand('copy');
+
+    textArea.remove();
+})
