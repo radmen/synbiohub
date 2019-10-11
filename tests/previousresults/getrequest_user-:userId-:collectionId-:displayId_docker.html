@@ -232,8 +232,8 @@ try {
     <div class="btn-group">
      <li class="dropdown btn btn-primary">
       <span class="fa fa-download">
-       <span class="caret">
-       </span>
+      </span>
+      <span class="caret">
       </span>
       <ul class="dropdown-menu dropdown-toggle">
        <li>
@@ -254,21 +254,32 @@ try {
        </span>
       </a>
      </li>
-     <li class="btn btn-success">
-      <a onclick="popup()" style="color:white" title="Share">
-       <span class="fa fa-share">
-       </span>
-      </a>
+     <li class="dropdown btn btn-success">
+      <span class="fa fa-share">
+      </span>
+      <span class="caret">
+      </span>
+      <ul class="dropdown-menu dropdown-toggle">
+       <li>
+        <a href="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/createShare">
+         Share with another user
+        </a>
+       </li>
+       <li>
+        <a href="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/createShareLink">
+         Create share link
+        </a>
+       </li>
+       <li>
+        <a href="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/sharing">
+         Current sharing settings
+        </a>
+       </li>
+      </ul>
      </li>
-     <li class="btn btn-success">
+     <li class="btn btn-danger">
       <a href="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/removeCollection" onclick="return confirm('Are you sure you want to delete this?')" style="color:white" title="Remove Collection">
        <span class="fa fa-remove">
-       </span>
-      </a>
-     </li>
-     <li class="btn btn-info">
-      <a href="/user/dockertestuser/testid_sequence1/testid_sequence1_collection/1/addOwner" style="color:white" title="Add Owner">
-       <span class="fa fa-id-card">
        </span>
       </a>
      </li>
